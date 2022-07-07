@@ -1,0 +1,21 @@
+<div class="container py-4">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td class="checkbox-column"><input type="checkbox" [(ngModel)]="user.selected"></td>
+        <th>{{ user.id }}</th>
+        <td>{{ user.name }}</td>
+        <td>{{ user.username }}</td>
+        <td>{{ user.selected }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

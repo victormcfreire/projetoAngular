@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10">
+      <h3>Novo Usuário</h3>
+    </div>
+    <div class="col-sm-2">
+      <app-form-btn [formulario]="form"></app-form-btn>
+    </div>
+  </div>
+</div>
+<div class="container py-4">
+  <form class="row g-3 needs-validation" [formGroup]="form">
+    <div class="col-md-4">
+      <input type="text" class="form-control mb-2 mr-sm-2" formControlName="nome" placeholder="Nome" />
+    </div>
+    <div class="col-md-4">
+      <input type="text" class="form-control" formControlName="nomeDeUsuario" placeholder="Nome de Usuário" />
+    </div>
+    <div class="col-md-4">
+      <input type="password" class="form-control" formControlName="senha" placeholder="Senha" />
+    </div>
+  </form>
+</div>
+
+form {{ form.controls }}
+
