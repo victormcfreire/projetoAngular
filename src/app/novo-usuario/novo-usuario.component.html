@@ -9,18 +9,44 @@
   </div>
 </div>
 <div class="container py-4">
-  <form class="row g-3 needs-validation" [formGroup]="form">
+  <form class="row g-3" [formGroup]="form">
     <div class="col-md-4">
-      <input type="text" class="form-control mb-2 mr-sm-2" formControlName="nome" placeholder="Nome" />
+      <input
+        type="text"
+        class="form-control mb-2 mr-sm-2"
+        formControlName="name"
+        placeholder="Nome"
+        [ngClass]="{
+          'is-invalid': !form.controls['name'].pristine && hasError('nome')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
     </div>
     <div class="col-md-4">
-      <input type="text" class="form-control" formControlName="nomeDeUsuario" placeholder="Nome de Usuário" />
+      <input
+        type="text"
+        class="form-control"
+        formControlName="username"
+        placeholder="Nome de Usuário"
+        [ngClass]="{
+          'is-invalid': !form.controls['username'].pristine && hasError('username')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
     </div>
     <div class="col-md-4">
-      <input type="password" class="form-control" formControlName="senha" placeholder="Senha" />
+      <input
+        type="password"
+        class="form-control"
+        formControlName="password"
+        placeholder="Senha"
+        [ngClass]="{
+          'is-invalid': !form.controls['password'].pristine && hasError('password')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
     </div>
   </form>
 </div>
-
-form {{ form.controls }}
-
+{{ hasError("name") }}
+<app-form-debug [form]="form"></app-form-debug>

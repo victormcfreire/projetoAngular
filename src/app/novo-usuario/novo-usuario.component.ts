@@ -13,9 +13,13 @@ export class NovoUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      nome: [null, Validators.required],
-      nomeDeUsuario: [null, Validators.required],
-      senha: [null, Validators.required]
+      name: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required]
     });
+  }
+
+  hasError(field: string) {
+    return this.form.get(field)?.errors;
   }
 }

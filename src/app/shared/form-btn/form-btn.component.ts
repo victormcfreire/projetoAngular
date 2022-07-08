@@ -1,35 +1,62 @@
 import { FormGroup } from '@angular/forms';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { Location } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
+import { AlertModalService } from '../alert-modal.service';
+
+import { UsuariosService } from './../usuarios.service';
 
 @Component({
   selector: 'app-form-btn',
   templateUrl: './form-btn.component.html',
-  styleUrls: ['./form-btn.component.css']
+  styleUrls: ['./form-btn.component.css'],
 })
 export class FormBtnComponent implements OnInit {
-
   @Input() formulario!: FormGroup;
+  @Output() submitted!: boolean;
 
-  constructor() { }
+  constructor(
+    private service: UsuariosService,
+    private location: Location,
+    private http: HttpClient,
+    private modal: AlertModalService
+  ) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-
-  save(form: FormGroup){
+  save(form: FormGroup) {
     console.log(form);
-    /* this.formulario = form;
-    console.log('this.formulario: ' + this.formulario + '/n' + 'form: ' + form);
+    this.submitted = true;
+
     if (form.valid) {
-      console.log('submitted: ' + form.value)
+      let novoUsuario = form.value;
+
+      let msgError = 'Erro ao criar usuário. Tente novamente';
+      let msgSuccess = 'Usuário criado com sucesso';
+
+      if (this.formulario.value.id) {
+        msgError = 'Erro ao atualizar usuário. Tente novamente';
+        msgSuccess = 'Usuário atualizado com sucesso!';
+      }
+
+      this.service.create(this.formulario.value).subscribe({
+        next: (s) => {
+          console.log('criou usuario');
+          this.modal.showAlertSuccess(msgSuccess);
+        },
+        error: (e) => this.modal.showAlertDanger(msgError),
+        complete: () => console.log('save complete'),
+      });
+      this.location.back();
     } else {
       console.log('formulario invalido');
       this.verificaValidacoesForm(form);
-    } */
+    }
   }
 
   verificaValidacoesForm(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(campo => {
+    Object.keys(formGroup.controls).forEach((campo) => {
       const controle: any = this.formulario.get(campo);
       controle?.markAllAsTouched();
       controle?.markAsDirty();

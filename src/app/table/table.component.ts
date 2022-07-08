@@ -1,4 +1,7 @@
+import { Usuario } from './usuario';
+import { UsuariosService } from './../shared/usuarios.service';
 import { Component, OnInit } from '@angular/core';
+import { catchError, EMPTY, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -7,15 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
 
-  users: any = [
-    {id: 1, name:'joe', username:'john doe'},
-    {id: 2, name:'joe2', username:'john doe2'},
-    {id: 3, name:'joe3', username:'john doe3'},
-  ];
+  usuarios$!: Observable<Usuario[]>;
+  selectedUsers!: Usuario[];
+  totalItems!: number;
 
-  constructor() { }
+  constructor(private service: UsuariosService) { }
 
   ngOnInit(): void {
+    this.usuarios$ = this.service.list();
+
+    //this.service.list().subscribe(dados => this.usuarios = dados);
+    //this.onRefresh();
   }
+
+  onRefresh() {
+    /* this.usuarios$ = this.service.list().pipe(
+      catchError((error) => {
+        console.error(error);
+        //this.error$.next(true);
+        //this.handleError();
+        return EMPTY;
+      })
+    ); */
+
+    //this.usuarios = this.service.users;
+  }
+
 
 }
