@@ -1,5 +1,5 @@
-<div class="container py-4">
-  <table class="table table-striped" *ngIf="usuarios$ | async as usuarios; else loading">
+<div class="container py-4" *ngIf="usuarios$ | async as usuarios; else loading">
+  <table class="table table-striped" >
     <thead>
       <tr>
         <th></th>
@@ -18,8 +18,22 @@
       </tr>
     </tbody>
   </table>
-  <ng-template #loading>
-    <span>Carregando usuários...</span>
-  </ng-template>
+  <div class="row" style="float: right;">
+    <pagination
+      [itemsPerPage]="2"
+      [totalItems]="usuarios.length"
+      [maxSize]="3"
+      [boundaryLinks]="true"
+      [previousText]="'<'"
+      [nextText]="'>'"
+      [firstText]="'<<'"
+      [lastText]="'>>'"
+      >
+    </pagination>
+  </div>
 </div>
+<ng-template #loading>
+  <span>Carregando usuários...</span>
+</ng-template>
+
 

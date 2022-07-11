@@ -10,7 +10,7 @@ import { TableComponent } from './table/table.component';
 import { CrudBtnComponent } from './crud-btn/crud-btn.component';
 import { SearchBarComponent } from './crud-btn/search-bar/search-bar.component';
 import { HttpClientModule } from '@angular/common/http';
-import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { PaginationConfig, PaginationModule } from 'ngx-bootstrap/pagination';
 import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ModalModule.forRoot(),
     PaginationModule
   ],
-  providers: [],
+  providers: [PaginationConfig],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

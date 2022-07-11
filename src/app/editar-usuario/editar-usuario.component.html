@@ -4,17 +4,47 @@
       <h3>Editar Usuário</h3>
     </div>
     <div class="col-sm-2">
-      <app-form-btn></app-form-btn>
+      <app-form-btn [formulario]="formulario"></app-form-btn>
     </div>
   </div>
 </div>
 <div class="container py-4">
-  <form class="row g-3 needs-validation">
+  <form class="row g-3 needs-validation" [formGroup]="formulario">
     <div class="col-md-6">
-      <input type="text" class="form-control mb-2 mr-sm-2" placeholder="Nome" />
+      <input
+        type="text"
+        class="form-control mb-2 mr-sm-2"
+        placeholder="Nome"
+        formControlName="name"
+        [ngClass]="{
+          'is-invalid': !formulario.controls['name'].pristine && hasError('name')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
     </div>
     <div class="col-md-6">
-      <input type="text" class="form-control" placeholder="Nome de Usuário" />
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Nome de Usuário"
+        formControlName="username"
+        [ngClass]="{
+          'is-invalid': !formulario.controls['username'].pristine && hasError('username')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
+    </div>
+    <div class="col-md-6">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Senha"
+        formControlName="password"
+        [ngClass]="{
+          'is-invalid': !formulario.controls['password'].pristine && hasError('password')
+        }"
+      />
+      <div class="invalid-feedback">Campo obrigatório</div>
     </div>
   </form>
 </div>

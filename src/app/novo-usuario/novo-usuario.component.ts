@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -9,13 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class NovoUsuarioComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      name: [null, Validators.required],
-      username: [null, Validators.required],
-      password: [null, Validators.required]
+    const user = this.route.snapshot.data['user']
+
+    this.form= this.fb.group({
+      id: [user.id],
+      name: [user.name, Validators.required],
+      username: [user.username, Validators.required],
+      password: [user.password, Validators.required]
     });
   }
 

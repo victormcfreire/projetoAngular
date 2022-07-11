@@ -8,7 +8,7 @@ export class CrudService<T> {
 
   list() {
     return this._http
-      .get<T[]>(`${this.API_URL}users`)
+      .get<T[]>(`${this.API_URL}`)
       .pipe(
         delay(2000),
         tap(console.log)
@@ -16,15 +16,15 @@ export class CrudService<T> {
   }
 
   getById(id: number) {
-    return this._http.get<T>(`${this.API_URL}/${id}`).pipe(take(1));
+    return this._http.get<T>(`${this.API_URL}${id}`).pipe(take(1));
   }
 
   create(record: any) {
-    return this._http.post(`${this.API_URL}users`, record).pipe(take(1));
+    return this._http.post(`${this.API_URL}`, record).pipe(take(1));
   }
 
   private update(record: any) {
-    return this._http.put(`${this.API_URL}/${record.id}`, record).pipe(take(1));
+    return this._http.put(`${this.API_URL}${record.id}`, record).pipe(take(1));
   }
 
   save(record: any) {
@@ -35,6 +35,6 @@ export class CrudService<T> {
   }
 
   delete(id: number) {
-    return this._http.delete(`${this.API_URL}/${id}`).pipe(take(1));
+    return this._http.delete(`${this.API_URL}${id}`).pipe(take(1));
   }
 }

@@ -40,7 +40,7 @@ export class FormBtnComponent implements OnInit {
         msgSuccess = 'Usuário atualizado com sucesso!';
       }
 
-      this.service.create(this.formulario.value).subscribe({
+      this.service.save(this.formulario.value).subscribe({
         next: (s) => {
           console.log('criou usuario');
           this.modal.showAlertSuccess(msgSuccess);

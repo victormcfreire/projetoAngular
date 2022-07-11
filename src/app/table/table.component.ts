@@ -1,26 +1,23 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
+
 import { Usuario } from './usuario';
 import { UsuariosService } from './../shared/usuarios.service';
-import { Component, OnInit } from '@angular/core';
-import { catchError, EMPTY, Observable } from 'rxjs';
+import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
-  styleUrls: ['./table.component.css']
+  styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit {
+  @Input() usuarios$!: Observable<Usuario[]>;
+  usuarios!: Usuario[];
 
-  usuarios$!: Observable<Usuario[]>;
-  selectedUsers!: Usuario[];
-  totalItems!: number;
-
-  constructor(private service: UsuariosService) { }
+  constructor(private service: UsuariosService) {}
 
   ngOnInit(): void {
-    this.usuarios$ = this.service.list();
 
-    //this.service.list().subscribe(dados => this.usuarios = dados);
-    //this.onRefresh();
   }
 
   onRefresh() {
@@ -32,9 +29,13 @@ export class TableComponent implements OnInit {
         return EMPTY;
       })
     ); */
-
     //this.usuarios = this.service.users;
   }
 
-
+  pageChanged(event: PageChangedEvent): void {
+    const startItem = (event.page - 1) * event.itemsPerPage;
+    const endItem = event.page * event.itemsPerPage;
+    //let returnedArray = contentArray.slice()
+    //returnedArray = this.contentArray.slice(startItem, endItem);
+  }
 }
