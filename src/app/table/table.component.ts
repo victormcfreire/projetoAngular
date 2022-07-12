@@ -13,6 +13,7 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 export class TableComponent implements OnInit {
   @Input() usuarios!: Usuario[];
   usuariosPerPage!: Usuario[];
+  p:number = 1;
 
   constructor(private service: UsuariosService) {
 
