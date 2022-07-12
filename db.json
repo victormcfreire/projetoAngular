@@ -7,20 +7,6 @@
       "password": "asdasd"
     },
     {
-      "id": 2,
-      "name": "joe2",
-      "username": "john doe2",
-      "password": "14578",
-      "selected": false
-    },
-    {
-      "id": 3,
-      "name": "joe3",
-      "username": "john doe3",
-      "password": "14578",
-      "selected": false
-    },
-    {
       "id": 4,
       "name": "asdasd",
       "username": "qweqwe",
@@ -39,12 +25,6 @@
       "password": "asdasd"
     },
     {
-      "id": 7,
-      "name": "fgjkhjk",
-      "username": "ghjfghj",
-      "password": "bnmvbnm"
-    },
-    {
       "name": "acnbvcbn",
       "username": "cbxnbcx",
       "password": "zcvzcv",
@@ -57,15 +37,9 @@
       "id": 9
     },
     {
-      "name": "teste2",
-      "username": "teste2",
-      "password": "asdwasd",
-      "id": 10
-    },
-    {
-      "id": 11,
-      "name": "resolve",
-      "username": "resolveTest",
+      "id": 10,
+      "name": "novo",
+      "username": "novo user",
       "password": "asdasd"
     }
   ]

@@ -1,3 +1,4 @@
+import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
 import { AlertModalComponent } from './alert-modal/alert-modal.component';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Injectable } from '@angular/core';
@@ -44,28 +45,22 @@ export class AlertModalService {
   }
 
   showAlertWarning(message: string) {
-    this.showAlert(message, AlertTypes.WARNING);
+    this.showAlert(message, AlertTypes.WARNING, 2000);
   }
 
-  /* showConfirm(
-    title: string,
-    msg: string,
-    confirmTxt?: string,
-    cancelTxt?: string
-  ) {
-    const modalRef: BsModalRef = this._modalService.show(ConfirmModalComponent);
+  showConfirm(title: string, msg: string, okTxt?: string, cancelTxt?: string) {
+    const bsModalRef: BsModalRef = this._modalService.show(ConfirmModalComponent);
+    bsModalRef.content.title = title;
+    bsModalRef.content.msg = msg;
 
-    modalRef.content.title = title;
-    modalRef.content.msg = msg;
-
-    if (confirmTxt) {
-      modalRef.content.confirmTxt = confirmTxt;
+    if (okTxt) {
+      bsModalRef.content.okTxt = okTxt;
     }
 
     if (cancelTxt) {
-      modalRef.content.cancelTxt = cancelTxt;
+      bsModalRef.content.cancelTxt = cancelTxt;
     }
 
-    return (<ConfirmModalComponent>modalRef.content).confirmResult;
-  } */
+    return (<ConfirmModalComponent>bsModalRef.content).confirmResult;
+  }
 }

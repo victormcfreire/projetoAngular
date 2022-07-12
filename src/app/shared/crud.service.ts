@@ -10,8 +10,7 @@ export class CrudService<T> {
     return this._http
       .get<T[]>(`${this.API_URL}`)
       .pipe(
-        delay(2000),
-        tap(console.log)
+        delay(1000)
       );
   }
 

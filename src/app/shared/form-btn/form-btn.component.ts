@@ -30,8 +30,6 @@ export class FormBtnComponent implements OnInit {
     this.submitted = true;
 
     if (form.valid) {
-      let novoUsuario = form.value;
-
       let msgError = 'Erro ao criar usuário. Tente novamente';
       let msgSuccess = 'Usuário criado com sucesso';
 
@@ -42,7 +40,6 @@ export class FormBtnComponent implements OnInit {
 
       this.service.save(this.formulario.value).subscribe({
         next: (s) => {
-          console.log('criou usuario');
           this.modal.showAlertSuccess(msgSuccess);
         },
         error: (e) => this.modal.showAlertDanger(msgError),
