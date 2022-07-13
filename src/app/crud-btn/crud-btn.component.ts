@@ -1,8 +1,9 @@
+import { Router } from '@angular/router';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+
 import { AlertModalService } from './../shared/alert-modal.service';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { UsuariosService } from './../shared/usuarios.service';
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { Usuario } from '../table/usuario';
 import { EMPTY, take, switchMap } from 'rxjs';
 
@@ -17,7 +18,14 @@ export class CrudBtnComponent implements OnInit {
 
   deleteModalRef!: BsModalRef;
   userSelected!: Usuario;
-  selectedUsersArray!: Usuario[];
+
+  get selectedUsersArray(): Usuario[]{
+    return this.service.selectedUsers;
+  }
+
+  set selectedUsersArray(value: Usuario[]){
+    this.service.selectedUsers = value;
+  }
 
   constructor(
     private router: Router,
@@ -27,61 +35,61 @@ export class CrudBtnComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onEdit(id: number, data: Usuario[]) {
+  onEdit(data: Usuario[]) {
     this.selectedUsersArray = [];
-    this.getUserSelected(data);
+    this.service.getUserSelected(data);
     if (this.selectedUsersArray.length > 1) {
       this.alertService.showAlertWarning(
-        'Escolha apenas um registro para editar.'
+        'Escolha apenas um usuário para editar.'
       );
     } else if (this.selectedUsersArray.length == 0) {
       this.alertService.showAlertWarning(
-        'Escolha pelo menos um registro para editar.'
+        'Escolha pelo menos um usuário para editar.'
       );
     } else {
       this.router.navigate(['alterarUsuario', this.selectedUsersArray[0].id]);
-
-      console.log('vai editar');
-    }
-  }
-
-  getUserSelected(users: Usuario[]) {
-    for (let i = 0; i < users.length; i++) {
-      const element = users[i];
-      if (element.selected) {
-        this.selectedUsersArray.push(element);
-      }
     }
   }
 
   onDelete(usuarios: Usuario[]) {
-    const result$ = this.alertService.showConfirm(
-      'Confirmação',
-      'Tem certeza que deseja remover esse(s) registro(s)?'
-    );
+    this.selectedUsersArray = [];
+    this.service.getUserSelected(usuarios);
+    if (this.selectedUsersArray.length == 0) {
+      this.alertService.showAlertWarning(
+        'Escolha pelo menos um usuário.'
+      );
+    }
+    else{
+      const result$ = this.alertService.showConfirm(
+        'Confirmação',
+        'Tem certeza que deseja remover esse(s) registro(s)?'
+      );
 
-    for (let i = 0; i < usuarios.length; i++) {
-      const element = usuarios[i];
-      if (element.selected) {
-        result$
-          .asObservable()
-          .pipe(
-            take(1),
-            switchMap((result) =>
-              result ? this.service.delete(element.id) : EMPTY
+      for (let i = 0; i < usuarios.length; i++) {
+        const element = usuarios[i];
+        if (element.selected) {
+          result$
+            .asObservable()
+            .pipe(
+              take(1),
+              switchMap((result) =>
+                result ? this.service.delete(element.id) : EMPTY
+              )
             )
-          )
-          .subscribe({
-            next: (success) => {
-              this.service.onRefresh();
-              console.log('deletou o usuario: ' + element);
-            },
-            error: (error) => {
-              this.alertService.showAlertDanger(
-                'Erro ao remover curso. Tente novamente mais tarde.'
-              );
-            },
-          });
+            .subscribe({
+              next: (success) => {
+                this.alertService.showAlertSuccess(
+                  `Usuário ${element.name} deletado com sucesso`
+                );
+                this.service.onRefresh();
+              },
+              error: (error) => {
+                this.alertService.showAlertDanger(
+                  'Erro ao remover usuário. Tente novamente mais tarde.'
+                );
+              },
+            });
+        }
       }
     }
   }

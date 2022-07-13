@@ -10,38 +10,47 @@
 </div>
 <div class="container py-4">
   <form class="row g-3 needs-validation" [formGroup]="formulario">
-    <div class="col-md-6">
+    <div class="col-md-4">
+      <label for="name">Nome</label>
       <input
+        id="name"
         type="text"
         class="form-control mb-2 mr-sm-2"
         placeholder="Nome"
         formControlName="name"
         [ngClass]="{
-          'is-invalid': !formulario.controls['name'].pristine && hasError('name')
+          'is-invalid':
+            !formulario.controls['name'].pristine && hasError('name')
         }"
       />
       <div class="invalid-feedback">Campo obrigatório</div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+      <label for="username">Nome de Usuário</label>
       <input
+        id="username"
         type="text"
         class="form-control"
         placeholder="Nome de Usuário"
         formControlName="username"
         [ngClass]="{
-          'is-invalid': !formulario.controls['username'].pristine && hasError('username')
+          'is-invalid':
+            !formulario.controls['username'].pristine && hasError('username')
         }"
       />
       <div class="invalid-feedback">Campo obrigatório</div>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
+      <label for="password">Senha</label>
       <input
+        id="password"
         type="password"
         class="form-control"
         placeholder="Senha"
         formControlName="password"
         [ngClass]="{
-          'is-invalid': !formulario.controls['password'].pristine && hasError('password')
+          'is-invalid':
+            !formulario.controls['password'].pristine && hasError('password')
         }"
       />
       <div class="invalid-feedback">Campo obrigatório</div>

@@ -1,10 +1,23 @@
+import { Usuario } from './../table/usuario';
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'searchFilter' })
 export class SearchPipe implements PipeTransform {
-  transform(list: any[], filterText: string): any {
-    return list
-      ? list.filter((item) => item.name.search(new RegExp(filterText, 'i')) > -1)
-      : [];
+  transform(items: Usuario[], searchText: string): any[] {
+    if (!items) {
+      return [];
+    }
+    if (!searchText) {
+      return items;
+    }
+    searchText = searchText.toLocaleLowerCase();
+    const regexp = new RegExp(searchText, 'i');
+
+    return [
+      ...items.filter((item: any) => {
+        const properties = Object.keys(item);
+        return properties.some((property: any) => regexp.test(item[property]));
+      }),
+    ];
   }
 }

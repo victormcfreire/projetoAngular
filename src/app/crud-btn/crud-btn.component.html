@@ -3,13 +3,13 @@
     <app-search-bar></app-search-bar>
   </div>
   <div>
-    <button type="button" class="btn btn-primary btn-sm" style="margin-left: 5px" [routerLink]="['novoUsuario']">
+    <button type="button" class="btn btn-primary btn-sm" [disabled]="!usuarios" [routerLink]="['novoUsuario']">
       Novo
     </button>
-    <button type="button" class="btn btn-warning btn-sm" style="margin-left: 5px" (click)="onEdit(1, usuarios)">
+    <button type="button" class="btn btn-warning btn-sm" [disabled]="!usuarios" (click)="onEdit(usuarios)">
       Alterar
     </button>
-    <button type="button" class="btn btn-danger btn-sm" style="margin-left: 5px" (click)="onDelete(usuarios)">
+    <button type="button" class="btn btn-danger btn-sm" [disabled]="!usuarios" (click)="onDelete(usuarios)">
       Excluir
     </button>
   </div>

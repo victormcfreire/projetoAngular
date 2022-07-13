@@ -1,5 +1,4 @@
 import { AlertModalService } from './alert-modal.service';
-import { map, mapTo, tap } from 'rxjs/operators';
 import { Usuario } from './../table/usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -26,7 +25,6 @@ export class UsuariosService extends CrudService<Usuario> {
     for (let i = 0; i < data.length; i++) {
       const element = data[i];
       if(element.selected){
-        console.log(element.name + element.selected)
         this.selectedUsers.push(element);
       }
     }
@@ -37,7 +35,6 @@ export class UsuariosService extends CrudService<Usuario> {
     this.users$ = this.list().pipe(
       catchError((error) => {
         console.error(error);
-        // this.error$.next(true);
         this.handleError();
         return EMPTY;
       })

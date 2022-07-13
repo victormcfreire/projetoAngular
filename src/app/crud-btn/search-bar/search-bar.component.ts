@@ -1,5 +1,5 @@
 import { UsuariosService } from './../../shared/usuarios.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -16,10 +16,8 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {}
 
   onSearch() {
-    let value = this.queryField.value;
+    let value = this.queryField.value.trim('');
     this.searchTerm = value;
     this.service.sharedSearchTerm = this.searchTerm;
-    console.log(this.service.sharedSearchTerm);
-    //this.countries = this.allCountries.filter((val) => val.name.toLowerCase().includes(value));
   }
 }

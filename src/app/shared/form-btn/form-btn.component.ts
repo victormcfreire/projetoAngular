@@ -1,8 +1,7 @@
 import { FormGroup } from '@angular/forms';
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 import { AlertModalService } from '../alert-modal.service';
 
 import { UsuariosService } from './../usuarios.service';
@@ -14,20 +13,16 @@ import { UsuariosService } from './../usuarios.service';
 })
 export class FormBtnComponent implements OnInit {
   @Input() formulario!: FormGroup;
-  @Output() submitted!: boolean;
 
   constructor(
     private service: UsuariosService,
     private location: Location,
-    private http: HttpClient,
     private modal: AlertModalService
   ) {}
 
   ngOnInit(): void {}
 
   save(form: FormGroup) {
-    console.log(form);
-    this.submitted = true;
 
     if (form.valid) {
       let msgError = 'Erro ao criar usuário. Tente novamente';
