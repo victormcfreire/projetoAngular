@@ -11,8 +11,11 @@ import { Usuario } from '../table/usuario';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  users$!: Observable<Usuario[]>;
   usuarios!: Usuario[];
+
+  get users$(): Observable<Usuario[]>{
+    return this.service.users$
+  }
 
   constructor(
     private service: UsuariosService,
@@ -21,7 +24,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.service.onRefresh();
-    this.users$ = this.service.users$
 
     this.users$
       .pipe(
@@ -37,6 +39,5 @@ export class HomeComponent implements OnInit {
 
   getUsuariosArray(data: any) {
     this.usuarios = data;
-    console.log(this.usuarios);
   }
 }

@@ -9,9 +9,12 @@
       </tr>
     </thead>
     <tbody>
+      {{ searchTerm }}
       <tr
         *ngFor="
           let usuario of usuarios
+            | reverse
+            | searchFilter: searchTerm
             | paginate: { itemsPerPage: 5, currentPage: p }
         "
       >
@@ -21,20 +24,21 @@
         <th>{{ usuario.id }}</th>
         <td>{{ usuario.name }}</td>
         <td>{{ usuario.username }}</td>
-        <td>{{ usuario.selected }}</td>
       </tr>
     </tbody>
   </table>
-  <div class="row" style="float: right">
-    <pagination-controls
-      (pageChange)="p = $event"
-      [responsive]="true"
-      [previousLabel]="'Anterior'"
-      [nextLabel]="'Próxima'"
-    >
-    </pagination-controls>
-  </div>
+</div>
+<div class="row pagination-row">
+  <pagination-controls
+    (pageChange)="p = $event"
+    [responsive]="true"
+    [previousLabel]="'Anterior'"
+    [nextLabel]="'Próxima'"
+  >
+  </pagination-controls>
 </div>
 <ng-template #loading>
-  <span>Carregando usuários...</span>
+  <div class="container py-4">
+    <span>Carregando usuários...</span>
+  </div>
 </ng-template>

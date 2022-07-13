@@ -15,6 +15,7 @@ export class UsuariosService extends CrudService<Usuario> {
   users$!: Observable<Usuario[]>;
   usersArray!: Usuario[];
   selectedUsers: Usuario[] = [];
+  sharedSearchTerm!: string;
 
   constructor(protected override _http: HttpClient, private alertService: AlertModalService) {
     super(_http, `${environment.API}`);

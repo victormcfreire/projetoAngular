@@ -15,6 +15,10 @@ export class TableComponent implements OnInit {
   usuariosPerPage!: Usuario[];
   p:number = 1;
 
+  get searchTerm(): string{
+    return this.service.sharedSearchTerm
+  }
+
   constructor(private service: UsuariosService) {
 
   }

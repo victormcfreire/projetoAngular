@@ -1,3 +1,10 @@
-.checkbox-column{
+.checkbox-column {
   width: 50px;
+}
+.container {
+  height: 75vh;
+}
+.pagination-row{
+  float: right;
+  margin-right: 110px;
 }

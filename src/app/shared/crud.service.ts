@@ -8,7 +8,7 @@ export class CrudService<T> {
 
   list() {
     return this._http
-      .get<T[]>(`${this.API_URL}`)
+      .get<T[]>(`${this.API_URL}all`)
       .pipe(
         delay(1000)
       );
