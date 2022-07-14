@@ -9,13 +9,9 @@
       </tr>
     </thead>
     <tbody>
-      {{
-        searchTerm
-      }}
       <tr
         *ngFor="
           let usuario of usuarios
-            | reverse
             | searchFilter: searchTerm
             | paginate: { itemsPerPage: 5, currentPage: p }
         "
@@ -30,6 +26,7 @@
     </tbody>
   </table>
 </div>
+
 <div class="row pagination-row">
   <pagination-controls
     (pageChange)="p = $event"
@@ -39,6 +36,7 @@
   >
   </pagination-controls>
 </div>
+
 <ng-template #loading>
   <div class="container py-4">
     <div class="d-flex justify-content-center">

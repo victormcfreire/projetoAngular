@@ -3,8 +3,9 @@
 }
 .container {
   height: 75vh;
+  min-height: fit-content;
 }
-.pagination-row{
+.pagination-row {
   float: right;
   margin-right: 110px;
 }

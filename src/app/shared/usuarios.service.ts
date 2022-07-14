@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -16,15 +17,17 @@ export class UsuariosService extends CrudService<Usuario> {
   selectedUsers: Usuario[] = [];
   sharedSearchTerm!: string;
 
-  constructor(protected override _http: HttpClient, private alertService: AlertModalService) {
+  constructor(
+    protected override _http: HttpClient,
+    private alertService: AlertModalService
+  ) {
     super(_http, `${environment.API}`);
-    this.users$ = this.list();
   }
 
   getUserSelected(data: Usuario[]) {
     for (let i = 0; i < data.length; i++) {
       const element = data[i];
-      if(element.selected){
+      if (element.selected) {
         this.selectedUsers.push(element);
       }
     }
@@ -46,5 +49,4 @@ export class UsuariosService extends CrudService<Usuario> {
       'Erro ao carregar usuários. Tente novamente mais tarde.'
     );
   }
-
 }

@@ -18,7 +18,7 @@ export class CrudService<T> {
     return this._http.get<T>(`${this.API_URL}${id}`).pipe(take(1));
   }
 
-  create(record: any) {
+  private create(record: any) {
     return this._http.post(`${this.API_URL}`, record).pipe(take(1));
   }
 
