@@ -1,9 +1,8 @@
 import { FormGroup } from '@angular/forms';
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import { AlertModalService } from '../alert-modal.service';
 
+import { AlertModalService } from '../alert-modal.service';
 import { UsuariosService } from './../usuarios.service';
 
 @Component({
@@ -42,7 +41,6 @@ export class FormBtnComponent implements OnInit {
       });
       this.location.back();
     } else {
-      console.log('formulario invalido');
       this.verificaValidacoesForm(form);
     }
   }

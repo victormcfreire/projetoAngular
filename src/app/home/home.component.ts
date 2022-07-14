@@ -1,8 +1,8 @@
-import { map } from 'rxjs/operators';
-import { AlertModalService } from './../shared/alert-modal.service';
-import { catchError, EMPTY, Observable } from 'rxjs';
-import { UsuariosService } from './../shared/usuarios.service';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { UsuariosService } from './../shared/usuarios.service';
 import { Usuario } from '../table/usuario';
 
 @Component({
@@ -18,8 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   constructor(
-    private service: UsuariosService,
-    private alertService: AlertModalService
+    private service: UsuariosService
   ) {}
 
   ngOnInit(): void {

@@ -19,11 +19,11 @@ export class CrudBtnComponent implements OnInit {
   deleteModalRef!: BsModalRef;
   userSelected!: Usuario;
 
-  get selectedUsersArray(): Usuario[]{
+  get selectedUsersArray(): Usuario[] {
     return this.service.selectedUsers;
   }
 
-  set selectedUsersArray(value: Usuario[]){
+  set selectedUsersArray(value: Usuario[]) {
     this.service.selectedUsers = value;
   }
 
@@ -55,11 +55,8 @@ export class CrudBtnComponent implements OnInit {
     this.selectedUsersArray = [];
     this.service.getUserSelected(usuarios);
     if (this.selectedUsersArray.length == 0) {
-      this.alertService.showAlertWarning(
-        'Escolha pelo menos um usuário.'
-      );
-    }
-    else{
+      this.alertService.showAlertWarning('Escolha pelo menos um usuário.');
+    } else {
       const result$ = this.alertService.showConfirm(
         'Confirmação',
         'Tem certeza que deseja remover esse(s) registro(s)?'
@@ -79,13 +76,13 @@ export class CrudBtnComponent implements OnInit {
             .subscribe({
               next: (success) => {
                 this.alertService.showAlertSuccess(
-                  `Usuário ${element.name} deletado com sucesso`
+                  `Usuário(s) deletado(s) com sucesso`
                 );
-                this.service.onRefresh();
+                //this.service.onRefresh();
               },
               error: (error) => {
                 this.alertService.showAlertDanger(
-                  'Erro ao remover usuário. Tente novamente mais tarde.'
+                  'Erro ao remover usuário(s). Tente novamente mais tarde.'
                 );
               },
             });

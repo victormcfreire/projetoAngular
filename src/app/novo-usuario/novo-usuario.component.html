@@ -11,7 +11,9 @@
 <div class="container py-4">
   <form class="row g-3" [formGroup]="form">
     <div class="col-md-4">
+      <label for="name">Nome</label>
       <input
+        id="name"
         type="text"
         class="form-control mb-2 mr-sm-2"
         formControlName="name"
@@ -23,7 +25,9 @@
       <div class="invalid-feedback">Campo obrigatório</div>
     </div>
     <div class="col-md-4">
+      <label for="username">Nome de Usuário</label>
       <input
+        id="username"
         type="text"
         class="form-control"
         formControlName="username"
@@ -35,7 +39,9 @@
       <div class="invalid-feedback">Campo obrigatório</div>
     </div>
     <div class="col-md-4">
+      <label for="password">Senha</label>
       <input
+        id="password"
         type="password"
         class="form-control"
         formControlName="password"

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { catchError, EMPTY, map, Observable, tap } from 'rxjs';
 
 import { Usuario } from './usuario';
 import { UsuariosService } from './../shared/usuarios.service';

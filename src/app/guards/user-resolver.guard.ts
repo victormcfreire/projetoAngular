@@ -2,10 +2,8 @@ import { UsuariosService } from './../shared/usuarios.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
-  CanActivate,
   Resolve,
-  RouterStateSnapshot,
-  UrlTree,
+  RouterStateSnapshot
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Usuario } from '../table/usuario';

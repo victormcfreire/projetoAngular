@@ -1,6 +1,7 @@
-import { UsuariosService } from './../../shared/usuarios.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+
+import { UsuariosService } from './../../shared/usuarios.service';
 
 @Component({
   selector: 'app-search-bar',

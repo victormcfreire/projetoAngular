@@ -1,6 +1,7 @@
+import { Component, Input, OnInit } from '@angular/core';
+
 import { Subject } from 'rxjs';
 import { BsModalRef } from 'ngx-bootstrap/modal';
-import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-confirm-modal',

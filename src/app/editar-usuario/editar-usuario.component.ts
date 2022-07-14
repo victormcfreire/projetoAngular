@@ -1,9 +1,8 @@
-import { map, switchMap } from 'rxjs';
-import { Usuario } from './../table/usuario';
-import { UsuariosService } from './../shared/usuarios.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
+import { UsuariosService } from './../shared/usuarios.service';
 
 @Component({
   selector: 'app-editar-usuario',
@@ -15,8 +14,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private service: UsuariosService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
