@@ -9,11 +9,15 @@
       </tr>
     </thead>
     <tbody>
+      <tr *ngIf="!(usuarios | searchFilter: searchTerm).length">
+        <td colspan="50" class="text-center">Nenhum usuário encontrado</td>
+      </tr>
       <tr
         *ngFor="
           let usuario of usuarios
             | searchFilter: searchTerm
-            | paginate: { itemsPerPage: 5, currentPage: p }
+            | paginate: { itemsPerPage: 5, currentPage: p };
+          let i = index
         "
       >
         <td class="checkbox-column">

@@ -12,21 +12,16 @@ import { PageChangedEvent } from 'ngx-bootstrap/pagination';
 export class TableComponent implements OnInit {
   @Input() usuarios!: Usuario[];
 
-
   usuariosPerPage!: Usuario[];
-  p:number = 1;
+  p: number = 1;
 
-  get searchTerm(): string{
-    return this.service.sharedSearchTerm
+  get searchTerm(): string {
+    return this.service.sharedSearchTerm;
   }
 
-  constructor(private service: UsuariosService) {
+  constructor(private service: UsuariosService) {}
 
-  }
-
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   pageChanged(event: PageChangedEvent): void {
     const startItem = (event.page - 1) * event.itemsPerPage;

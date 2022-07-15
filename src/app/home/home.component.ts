@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, map, take } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, map, Subscription } from 'rxjs';
 
 import { UsuariosService } from './../shared/usuarios.service';
 import { Usuario } from '../table/usuario';
@@ -9,40 +9,39 @@ import { Usuario } from '../table/usuario';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
+  //usuarios!: Usuario[];
+  usersSub!: Subscription;
 
-  usuarios!: Usuario[];
-
-  // get usuarios(): Usuario[]{
-  //   return this.service.usersArray
-  // }
-
-  get users$(): Observable<Usuario[]>{
-    return this.service.users$
+  get usuarios(): Usuario[] {
+    return this.service.usersArray;
   }
 
-  constructor(
-    private service: UsuariosService
-  ) {}
+  set usuarios(value: Usuario[]) {
+    this.service.usersArray = value;
+  }
+
+  get users$(): Observable<Usuario[]> {
+    return this.service.users$;
+  }
+
+  constructor(private service: UsuariosService) {}
 
   ngOnInit(): void {
-    this.service.onRefresh();
-
-    this.users$
-      .pipe(
-        take(1),
-        map((res) => {
-          let usuariosArray = res;
-          return usuariosArray;
-        })
-      )
-      .subscribe((v) => {
+    this.usersSub = this.users$.pipe(map((res) => res)).subscribe({
+      next: (v) => {
+        console.log('deveria mudar');
         this.getUsuariosArray(v.reverse());
-      });
+      },
+      error: (e) => console.log(e),
+    });
   }
 
   getUsuariosArray(data: any) {
     this.usuarios = data;
   }
 
+  ngOnDestroy() {
+    this.usersSub.unsubscribe();
+  }
 }

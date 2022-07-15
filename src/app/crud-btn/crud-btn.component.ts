@@ -79,13 +79,14 @@ export class CrudBtnComponent implements OnInit {
                 this.alertService.showAlertSuccess(
                   `Usuário(s) deletado(s) com sucesso`
                 );
+                this.service.onRefresh();
               },
               error: (error) => {
                 this.alertService.showAlertDanger(
                   'Erro ao remover usuário(s). Tente novamente mais tarde.'
                 );
               },
-            })
+            });
         }
       }
     }
